@@ -1,0 +1,74 @@
+openapi: 3.0.2
+info:
+  version: 0.0.2
+  title: Twenty Eight Solutions Toolbox
+  description: Some tools shared between our projects
+  contact:
+    name: Twenty Eight Solutions
+    url: https://twentyeight.solutions
+    email: info@twentyeight.solutions
+servers:
+  - url: https://tools.28.solutions
+    description: Freely available
+tags:
+  - name: Networking
+    description: Network-related tools
+  - name: Misc
+    description: Unrelated tools
+paths:
+  /ip:
+    get:
+      summary: Get your public IP address
+      operationId: whatIsMyIp
+      tags: [Networking]
+      responses:
+        200:
+          description: |
+            Your public [IPv4][ipv4] address in dot-decimal notation
+
+            [ipv4]: https://en.wikipedia.org/wiki/IPv4
+          content:
+            text/plain:
+              schema:
+                type: string
+                pattern: |
+                  ^\d{1,3}(?:[.]\d{1,3}){3}$
+                example: 12.34.56.78
+        default: &defaultError
+          description: Unexpected error
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: something went wrong
+  /hash:
+    post:
+      summary: Hash arbitrary data
+      description: |
+        Compute the hash of arbitrary data
+        
+        Currently __only__ [MD5 algorithm][md5] is supported
+
+        [md5]: https://en.wikipedia.org/wiki/MD5
+      operationId: hash
+      tags: [Misc]
+      requestBody:
+        description: Data to process
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: foobar
+          application/octet-stream:
+            schema: {}
+      responses:
+        200:
+          description: Hash as an hexadecimal string
+          content:
+            text/plain:
+              schema:
+                type: string
+                pattern: "^[a-f0-9]+$"
+                example: 9a347dec12674e100525a8110b516792
+        default: *defaultError

@@ -75,7 +75,7 @@ components:
     HexString:
       type: string
       pattern: ^[a-f0-9]+$
-      examples: [9a347dec12674e100525a8110b516792]
+      examples: [3858f62230ac3c915f300c664312c63f]
   responses:
     GenericError:
       description: Unexpected error

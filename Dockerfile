@@ -1,4 +1,4 @@
-FROM swaggerapi/swagger-ui:v3.52.5
+FROM swaggerapi/swagger-ui:v5.17.14
 
 USER 101
 

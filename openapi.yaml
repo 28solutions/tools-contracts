@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 0.0.2
+  version: 0.1.0
   title: Twenty Eight Solutions Toolbox
   description: Some tools shared between our projects
   contact:

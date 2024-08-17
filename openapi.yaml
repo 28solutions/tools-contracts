@@ -39,8 +39,7 @@ paths:
           content:
             text/plain:
               schema:
-                type: string
-                examples: [something went wrong]
+                $ref: "#/components/schemas/Error"
   /hash:
     post:
       summary: Hash arbitrary data
@@ -72,3 +71,8 @@ paths:
                 pattern: "^[a-f0-9]+$"
                 examples: [9a347dec12674e100525a8110b516792]
         default: *defaultError
+components:
+  schemas:
+    Error:
+      type: string
+      examples: [something went wrong]
